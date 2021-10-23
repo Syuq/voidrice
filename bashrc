@@ -118,7 +118,7 @@ ex ()
 {
   if [ -f $1 ] ; then
     case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.bz2)  tar xjf $1   ;;
       *.tar.gz)    tar xzf $1   ;;
       *.bz2)       bunzip2 $1   ;;
       *.rar)       unrar x $1     ;;
@@ -137,5 +137,6 @@ ex ()
 }
 
 #eval "$(starship init bash)"
+#set -o vi
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash 

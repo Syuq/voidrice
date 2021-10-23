@@ -13,6 +13,7 @@ export ZSH="/home/tat/.oh-my-zsh"
 #ZSH_THEME="dracula"
 #ZSH_THEME="spaceship"
 eval "$(starship init zsh)"
+#set -o vi
 
 # export KEYTIMEOUT=1
 VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
@@ -80,7 +81,7 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git
+plugins=(
          vi-mode
          zsh-autosuggestions
          zsh-syntax-highlighting
@@ -119,6 +120,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#44475a,bg=cyan,bold,underline"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias z="zathura"
 alias ls="exa"
 alias ll="exa --icons --git -la"
 alias tree="exa --icons --tree"
@@ -126,10 +128,9 @@ alias tree="exa --icons --tree"
 alias ip="ip -color=auto"
 alias grep="grep --color=auto"
 alias r='ranger'
+alias n='nnn'
 alias gsync="git checkout master && git fetch upstream && git rebase upstream/master && git push"
 alias glog='git log --graph --oneline --decorate --all'
-
-alias meet='python3 ~/Public/meet_automation/a.py'
 
 man() {
     env LESS_TERMCAP_mb=$'\E[01;31m' \
@@ -147,5 +148,4 @@ source /home/tat/.oh-my-zsh/custom/themes/dracu-syntax-highlighting.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+eval $(thefuck --alias)
