@@ -34,9 +34,8 @@ bindsym $mod+Shift+q kill
 
 # start program launcher
 # bindsym $mod+d exec --no-startup-id dmenu_recency
-#bindsym $mod+d exec "dmenu_recency -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'run:'"
-#bindsym $mod+d exec "rofi -modi window,drun,run -show drun -sidebar-mode -terminal termite -color-window '#000000, #000000, #000000' -color-normal '#000000, #b3e774, #000000, #b3e774, #000000' -color-active '#000000, #b3e774, #000000, #b3e774, #000000' -color-urgent '#000000, #b3e774, #000000, #b3e774, #000000'"
-bindsym $mod+d exec --no-startup-id rofi -show run -show-icons -run-shell-command '{terminal} -e zsh -ic "{cmd} && read"'
+bindsym $mod+d exec "dmenu_recency -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'FiraCode Nerd Font-10' -p ' ' "
+#bindsym $mod+d exec --no-startup-id rofi -show run -show-icons -run-shell-command '{terminal} -e zsh -ic "{cmd} && read"'
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -147,10 +146,10 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 set $ws1 1:
-set $ws2 2:
+set $ws2 2:
 set $ws3 3:
-set $ws4 4:
-set $ws5 5:
+set $ws4 4:
+set $ws5 5:
 set $ws6 6
 set $ws7 7
 set $ws8 8
@@ -186,10 +185,10 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
-# assign [class="Thunderbird"] $ws1
-# assign [class="Pale moon"] $ws2
-# assign [class="Pcmanfm"] $ws3
-# assign [class="Skype"] $ws5
+ assign [class="st"] $ws1
+ assign [class="google-chrome-stable"] $ws2
+ assign [class="Pcmanfm"] $ws3
+ assign [class="telegram-desktop"] $ws5
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -208,7 +207,7 @@ for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
-for_window [title="About Pale Moon"] floating enable
+for_window [title="google-chrome-stable"] floating enable
 for_window [class="Pamac-manager"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="qt5ct"] floating enable sticky enable border normal
@@ -337,7 +336,8 @@ bar {
 
 	bindsym button4 nop
 	bindsym button5 nop
-#   font xft:URWGothic-Book 11
+  font pango:FiraCode Nerd Font 11
+  #font xft:FiraCode-Nerd-Font 11
 	strip_workspace_numbers yes
 
 colors {

@@ -17,21 +17,21 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
 Plug 'preservim/nerdcommenter'
 Plug 'easymotion/vim-easymotion'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'dracula/vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'unblevable/quick-scope'
 Plug 'honza/vim-snippets'
-Plug 'ervandew/supertab'
+"Plug 'ervandew/supertab'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mattn/emmet-vim'
 Plug 'dart-lang/dart-vim-plugin'
@@ -101,6 +101,8 @@ set termguicolors
 "filetype plugin on
 "syntax on
 
+set foldmethod=manual
+
 set background=dark
 
 colorscheme dracula
@@ -156,9 +158,6 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
-"nnoremap <Leader>\ :vsplit<CR>
-"nnoremap <Leader>/ :split<CR>
-
 nmap = :res +2<CR> " increase pane by 2 
 nmap - :res -2<CR> " decrease pane by 2
 nmap ] :vertical res +2<CR> " vertical increase pane by 2
@@ -168,8 +167,8 @@ nmap [ :vertical res -2<CR> " vertical decrease pane by 2
 map <C-h> :nohl<CR>
 
 " NERD tree configuration
-noremap <C-d> :NERDTreeToggle<CR>
-nnoremap F :NERDTreeFind<CR>
+noremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-n> :NERDTreeFind<CR>
 
 let NERDTreeShowHidden=1
 
@@ -178,7 +177,7 @@ noremap ` :Files<CR>
 noremap <M-;> :Buffers<CR>
 
 " bind \ (backward slash) to grep shortcut
-nnoremap K :Ag <C-R><C-W><CR>
+nnoremap <Leader>\ :Ag <C-R><C-W><CR>
 "nnoremap <C-k> /<C-R><C-W><CR>
 nnoremap \ :Ag<SPACE>
 
@@ -191,12 +190,28 @@ set signcolumn=yes
 " Remap keys for gotos
 " GoTo code navigation.
 
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 " Use <c-space> to trigger completion.
-"if has('nvim')
-  "inoremap <silent><expr> <c-space> coc#refresh()
-"else
-  "inoremap <silent><expr> <c-@> coc#refresh()
-"endif
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -231,7 +246,9 @@ nnoremap R :CocCommand <CR>
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
 
-nmap <Leader>f :Format <CR>
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 " Apply AutoFix to problem on the current line.
 nmap <leader>fc  <Plug>(coc-fix-current)
@@ -260,11 +277,6 @@ let g:lightline = {
       \   'cocstatus': 'coc#status'
       \ },
       \ }
-
-" Multi select
-let g:multi_cursor_next_key='<C-n>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
 
 " fzf.vim
 " Customize fzf colors to match your color scheme
@@ -298,8 +310,8 @@ vmap <Leader>y "+y
 vmap <Leader>d "+d
 
 " Auto pair
-let g:AutoPairsFlyMode = 1
-let g:AutoPairsShortcutBackInsert = '<M-b>'
+"let g:AutoPairsFlyMode = 1
+"let g:AutoPairsShortcutBackInsert = '<M-b>'
 
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
@@ -319,15 +331,15 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " Use <leader>x for convert visual selected code to snippet
 xmap <leader>x  <Plug>(coc-convert-snippet)
 
-" nvim treesitter
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-  },
-}
-EOF
+"" nvim treesitter
+"lua <<EOF
+"require'nvim-treesitter.configs'.setup {
+  "ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  "highlight = {
+    "enable = true,              -- false will disable the whole extension
+  "},
+"}
+"EOF
 
 " Rename current file
 function! RenameFile()
@@ -340,3 +352,5 @@ function! RenameFile()
   endif
 endfunction
 map <Leader>rnf :call RenameFile()<cr>
+
+"cmap w!! %!sudo tee > /dev/null %
