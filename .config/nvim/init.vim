@@ -171,6 +171,7 @@ noremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-n> :NERDTreeFind<CR>
 
 let NERDTreeShowHidden=1
+let NERDTreeMinimalUI=1
 
 " fzf
 noremap ` :Files<CR>

@@ -50,7 +50,7 @@ get_session(){
 		fluxbox) dbus_args+=(startfluxbox) ;;
 		gnome) dbus_args+=(gnome-session) ;;
 		i3|i3wm) dbus_args+=(i3 --shmlog-size 0) ;;
-		jwm) dbus_args+=(jwm) ;;
+		dwm) dbus_args+=(dwm) ;;
 		kde) dbus_args+=(startplasma-x11) ;;
 		lxde) dbus_args+=(startlxde) ;;
 		lxqt) dbus_args+=(lxqt-session) ;;

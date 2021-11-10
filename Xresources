@@ -1,6 +1,7 @@
 !! Transparency (0-1):
 st.alpha: 0.69
 st.alphaOffset: 0.3
+st.font: FiraCode Nerd Font:pixelsize=12:antialias=true:autohint=true;
 
 ! terminal padding color
 *borderColor: #24283b
@@ -56,8 +57,8 @@ Xft.lcdfilter: lcddefault
 Xcursor.theme: xcursor-breeze
 Xcursor.size:                     0
 
-XTerm*background:        #222D31
-XTerm*foreground:        #d8d8d8
+XTerm*background:        #BFBFBF
+XTerm*foreground:        #222D31
 XTerm*pointerColor:      #1ABB9B
 XTerm*faceName:          Fixed
 XTerm*faceSize:          11
