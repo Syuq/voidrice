@@ -28,7 +28,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'dracula/vim'
 Plug 'sheerun/vim-polyglot'
-"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'unblevable/quick-scope'
 Plug 'honza/vim-snippets'
 "Plug 'ervandew/supertab'
@@ -333,14 +333,22 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 xmap <leader>x  <Plug>(coc-convert-snippet)
 
 "" nvim treesitter
-"lua <<EOF
-"require'nvim-treesitter.configs'.setup {
-  "ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  "highlight = {
-    "enable = true,              -- false will disable the whole extension
-  "},
-"}
-"EOF
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    disable = {},
+  },
+  indent = {
+    enable = false,
+    disable = {},
+  },
+  ensure_installed = {
+    "bash",
+    "java",
+  },
+}
+EOF
 
 " Rename current file
 function! RenameFile()
