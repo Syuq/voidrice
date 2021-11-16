@@ -120,7 +120,8 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#44475a,bg=cyan,bold,underline"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias z="zathura"
+alias z="swallow zathura"
+alias sxiv="swallow sxiv"
 alias ls="exa"
 alias ll="exa --icons --git -la"
 alias tree="exa --icons --tree"
@@ -129,6 +130,7 @@ alias ip="ip -color=auto"
 alias grep="grep --color=auto"
 alias r='ranger'
 alias n='nnn'
+alias nv='nvim'
 alias gsync="git checkout master && git fetch upstream && git rebase upstream/master && git push"
 alias glog='git log --graph --oneline --decorate --all'
 
