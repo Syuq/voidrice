@@ -21,7 +21,11 @@ bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
+<<<<<<< HEAD
 font xft:URWGothic-Book 9
+=======
+#font xft:URWGothic-Book 11
+>>>>>>> 3c88dc5414e78899ebd1758dda5c10d894b3eef4
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
