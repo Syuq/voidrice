@@ -28,7 +28,7 @@ order += "battery all"
 order += "read_file uptime"
 order += "load"
 order += "memory"
-order += "tztime local"
+# order += "tztime local"
 #order += "run_watch DHCP"
 order += "volume master"
 

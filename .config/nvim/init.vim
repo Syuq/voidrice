@@ -19,14 +19,16 @@ Plug 'alvan/vim-closetag'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
-Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-sensible'
+"Plug 'preservim/nerdcommenter'
 Plug 'easymotion/vim-easymotion'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'editorconfig/editorconfig-vim'
+" Plug 'editorconfig/editorconfig-vim'
 Plug 'dracula/vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -117,9 +119,9 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
 endif
 
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
-endif
+" if filereadable(expand("~/.vimrc.bundles"))
+"   source ~/.vimrc.bundles
+" endif
 
 augroup vimrcEx
   autocmd!
@@ -133,18 +135,18 @@ augroup vimrcEx
 augroup END
 
 " Go file config
-au FileType go set noexpandtab
-au FileType go set shiftwidth=4
-au FileType go set softtabstop=4
-au FileType go set tabstop=4
+" au FileType go set noexpandtab
+" au FileType go set shiftwidth=4
+" au FileType go set softtabstop=4
+" au FileType go set tabstop=4
 
-au BufRead,BufNewFile .eslintrc.json setlocal filetype=json
-au BufRead,BufNewFile .babelrc setlocal filetype=json
-au BufRead,BufNewFile .prettierrc setlocal filetype=json
+" au BufRead,BufNewFile .eslintrc.json setlocal filetype=json
+" au BufRead,BufNewFile .babelrc setlocal filetype=json
+" au BufRead,BufNewFile .prettierrc setlocal filetype=json
 
-au BufRead,BufNewFile .babelrc.js setlocal filetype=javascript
-au BufRead,BufNewFile .sequelizerc setlocal filetype=javascript
-au BufRead,BufNewFile *.hbs setlocal filetype=html
+" au BufRead,BufNewFile .babelrc.js setlocal filetype=javascript
+" au BufRead,BufNewFile .sequelizerc setlocal filetype=javascript
+" au BufRead,BufNewFile *.hbs setlocal filetype=html
 
 " When the type of shell script is /bin/sh, assume a POSIX-compatible
 " shell for syntax highlighting purposes.
@@ -333,6 +335,9 @@ highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=und
 " Copy and paste to system clipboard with <Leader>p and <Leader>y
 vmap <Leader>y "+y
 vmap <Leader>d "+d
+noremap gV `[v`]
+nnoremap <CR> G
+nnoremap <BS> gg
 
 " Auto pair
 "let g:AutoPairsFlyMode = 1
@@ -386,3 +391,14 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
+
+" vp doesn't replace paste buffer
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()

@@ -1,4 +1,15 @@
-cal
+function ordinal () {
+  case "$1" in
+    *1[0-9] | *[04-9]) echo "$1"th;;
+    *1) echo "$1"st;;
+    *2) echo "$1"nd;;
+    *3) echo "$1"rd;;
+  esac
+}
+
+echo "$(ordinal $(date +%j)) day"
+
+cal -3
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -122,6 +133,8 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#44475a,bg=cyan,bold,underline"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias z="swallow zathura"
 alias sxiv="swallow sxiv"
+alias mpv="swallow mpv"
+alias webcam="mpv --no-cache --no-osc --no-input-default-bindings --profile=low-latency --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)"
 alias ls="exa"
 alias ll="exa --icons --git -la"
 alias tree="exa --icons --tree"
@@ -133,6 +146,8 @@ alias n='nnn'
 alias nv='nvim'
 alias gsync="git checkout master && git fetch upstream && git rebase upstream/master && git push"
 alias glog='git log --graph --oneline --decorate --all'
+
+alias rm -rf /="echo 'stupid'"
 
 man() {
     env LESS_TERMCAP_mb=$'\E[01;31m' \
