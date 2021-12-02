@@ -149,6 +149,8 @@ alias glog='git log --graph --oneline --decorate --all'
 
 alias rm -rf /="echo 'stupid'"
 
+alias packtime="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 20"
+
 man() {
     env LESS_TERMCAP_mb=$'\E[01;31m' \
     LESS_TERMCAP_md=$'\E[01;38;5;74m' \
