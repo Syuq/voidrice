@@ -6,6 +6,9 @@ Xft.autohint:  false
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
+! window padding
+st.borderpx: 20
+
 *background:                      #282a36	
 *foreground:                      #f8f8f2	
 *fading:                          8
