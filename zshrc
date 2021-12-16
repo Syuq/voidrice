@@ -22,7 +22,6 @@ export ZSH="/home/tat/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
 #ZSH_THEME="dracula"
-#ZSH_THEME="spaceship"
 eval "$(starship init zsh)"
 #set -o vi
 
@@ -30,7 +29,6 @@ eval "$(starship init zsh)"
 VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 VI_MODE_SET_CURSOR=true
 
-DISABLE_MAGIC_FUNCTIONS="true"
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -45,7 +43,7 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
 # DISABLE_UPDATE_PROMPT="true"
@@ -54,7 +52,7 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -131,11 +129,8 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#44475a,bg=cyan,bold,underline"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias z="swallow zathura"
-alias sxiv="swallow sxiv"
-alias mpv="swallow mpv"
 alias webcam="mpv --no-cache --no-osc --no-input-default-bindings --profile=low-latency --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)"
-alias ls="exa"
+alias ls='ls --color=auto'
 alias ll="exa --icons --git -la"
 alias tree="exa --icons --tree"
 #alias ping="prettyping"

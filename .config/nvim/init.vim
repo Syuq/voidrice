@@ -29,7 +29,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Plug 'editorconfig/editorconfig-vim'
-Plug 'dracula/vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'sheerun/vim-polyglot'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'unblevable/quick-scope'
@@ -49,7 +49,7 @@ set encoding=UTF-8
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
 set nowritebackup
-set noswapfile
+" set noswapfile
 set history=50
 set ruler         " show the cursor position all the time
 set showcmd       " display incomplete commands
@@ -70,7 +70,7 @@ set shiftround
 set expandtab
 
 " Make it obvious where 80 characters is
-set textwidth=80
+set textwidth=91
 set colorcolumn=+1
 
 " Display extra whitespace
@@ -85,8 +85,8 @@ set number
 set numberwidth=5
 
 " Open new split panes to right and bottom, which feels more natural
-"set splitbelow
-"set splitright
+" set splitbelow
+" set splitright
 
 " Autocomplete with dictionary words when spell check is on
 set complete+=kspell

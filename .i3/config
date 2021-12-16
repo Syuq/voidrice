@@ -34,7 +34,7 @@ bindsym $mod+q kill
 
 # start program launcher
 # bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod+d exec "dmenu_recency -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'FiraCode Nerd Font-10' -p ' ' "
+bindsym $mod+d exec "dmenu_recency -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'JetBrainsMono Nerd Font-10' -p ' ' "
 #bindsym $mod+d exec --no-startup-id rofi -show run -show-icons -run-shell-command '{terminal} -e zsh -ic "{cmd} && read"'
 
 # launch categorized menu
@@ -59,7 +59,7 @@ bindsym $mod+Ctrl+m exec st -e 'alsamixer'
 # Start Applications
 bindsym $mod+Ctrl+b exec st -e 'bmenu'
 #bindsym $mod+F1 exec code
-bindsym $mod+F2 exec google-chrome-stable
+bindsym $mod+F2 exec brave
 bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
@@ -188,7 +188,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
  #assign [class="St"] $ws1
- assign [class="Google-chrome"] $ws2
+ assign [class="Brave"] $ws2
  assign [class="Pcmanfm"] $ws3
  assign [class="Telegram-desktop"] $ws5
 
@@ -291,7 +291,7 @@ exec --no-startup-id clipit
 #exec --no-startup-id start_conky_maia
 #exec --no-startup-id start_conky_green
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec --no-startup-id xautolock -time 10 -locker blurlock
+exec --no-startup-id xautolock -time 12 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
@@ -339,8 +339,8 @@ bar {
 
 	bindsym button4 nop
 	bindsym button5 nop
-  font pango:FiraCode Nerd Font 11
-  #font xft:FiraCode-Nerd-Font 11
+  font pango:JetBrainsMono Nerd Font 11
+  #font xft:JetBrainsMono-Nerd-Font 11
 	strip_workspace_numbers yes
 
 colors {
@@ -374,7 +374,7 @@ bindsym $mod+m bar mode toggle
 #############################
 
 # Set inner/outer gaps
-gaps inner  6
+gaps inner 0
 gaps outer -2
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
