@@ -138,7 +138,6 @@ alias ip="ip -color=auto"
 alias grep="grep --color=auto"
 alias r='ranger'
 alias n='nnn'
-alias nv='nvim'
 alias gsync="git checkout master && git fetch upstream && git rebase upstream/master && git push"
 alias glog='git log --graph --oneline --decorate --all'
 
