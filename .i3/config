@@ -61,7 +61,7 @@ bindsym $mod+Ctrl+b exec st -e 'bmenu'
 #bindsym $mod+F1 exec code
 bindsym $mod+F2 exec brave
 bindsym $mod+F3 exec pcmanfm
-# bindsym $mod+F3 exec ranger
+# bindsym $mod+F3 exec st -e 'ranger'
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
 #bindsym $mod+F4 exec android-studio
 bindsym $mod+F5 exec telegram-desktop

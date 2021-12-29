@@ -10,34 +10,34 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " Define bundles via Github repos
-"Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
-"Plug 'windwp/nvim-autopairs'
-Plug 'alvan/vim-closetag'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-commentary'
-" Plug 'tpope/vim-sensible'
-"Plug 'preservim/nerdcommenter'
 Plug 'easymotion/vim-easymotion'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" Plug 'editorconfig/editorconfig-vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'sheerun/vim-polyglot'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'unblevable/quick-scope'
 Plug 'honza/vim-snippets'
-"Plug 'ervandew/supertab'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'mattn/emmet-vim'
-Plug 'dart-lang/dart-vim-plugin'
+" Plug 'mattn/emmet-vim'
+" Plug 'tpope/vim-sensible'
+"Plug 'preservim/nerdcommenter'
+"Plug 'ervandew/supertab'
+"Plug 'windwp/nvim-autopairs'
+" Plug 'sheerun/vim-polyglot'
+" Plug 'editorconfig/editorconfig-vim'
+" Plug 'alvan/vim-closetag'
+" Plug 'dart-lang/dart-vim-plugin'
 Plug 'mhinz/vim-startify'
 
 call plug#end()
@@ -70,7 +70,7 @@ set shiftround
 set expandtab
 
 " Make it obvious where 80 characters is
-set textwidth=91
+set textwidth=80
 set colorcolumn=+1
 
 " Display extra whitespace
@@ -83,10 +83,13 @@ set nojoinspaces
 set relativenumber
 set number
 set numberwidth=5
+" hi CursorLineNr guifg=#af00af
+set cursorline
+set cursorlineopt=number
 
 " Open new split panes to right and bottom, which feels more natural
-" set splitbelow
-" set splitright
+set splitbelow
+set splitright
 
 " Autocomplete with dictionary words when spell check is on
 set complete+=kspell
@@ -97,6 +100,7 @@ set diffopt+=vertical
 " Copy to clipboard
 set clipboard=unnamed
 
+" Colorscheme
 set lazyredraw
 set termguicolors
 
@@ -107,11 +111,12 @@ set termguicolors
 
 set foldmethod=manual
 
-set background=dark
+" set background=dark
 
 colorscheme dracula
 
-filetype plugin indent on
+" Auto indenting
+" filetype plugin indent on
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -173,6 +178,12 @@ map <C-h> :nohl<CR>
 " NERD tree configuration
 noremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-n> :NERDTreeFind<CR>
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" Open the existing NERDTree on each new tab.
+autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
@@ -323,9 +334,9 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 " Auto close tag
-let g:closetag_filenames = '*.html,*.js,*.jsx,*.vue'
-let g:closetag_emptyTags_caseSensitive = 1
-let g:jsx_ext_required = 0
+" let g:closetag_filenames = '*.html,*.js,*.jsx,*.vue'
+" let g:closetag_emptyTags_caseSensitive = 1
+" let g:jsx_ext_required = 0
 
 " Quick Scope
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -388,6 +399,8 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     "bash",
     "java",
+    "c",
+    "cpp",
   },
 }
 EOF

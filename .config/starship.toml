@@ -52,3 +52,10 @@ modified = "!"
 staged = '[++\($count\)](green)'
 renamed = "» "
 deleted = "🗑 "
+
+[time]
+disabled = false
+format = '[\[$time\]]($style) '
+time_format = "%T"
+utc_time_offset = "+7"
+time_range = "22:30:00-07:00:00"
